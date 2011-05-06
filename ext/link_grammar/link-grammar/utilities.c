@@ -45,7 +45,7 @@
 //#ifdef _MSC_VER
 //#define DICTIONARY_DIR "."
 //#endif
-#define DICTIONARY_DIR  "../../../data/"
+#define DICTIONARY_DIR  "../data/"
 #define DEFAULTPATH DICTIONARY_DIR
 
 /* This file contains certain general utilities. */
