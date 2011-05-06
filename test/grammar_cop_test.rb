@@ -2,6 +2,7 @@ require "#{File.dirname(__FILE__)}/../lib/grammar_cop"
 
 puts dir = File.expand_path('../data', File.dirname(__FILE__))
 GrammarCop::Dictionary.set_dictionary_path(dir)
+
 dict = GrammarCop::Dictionary.create("en")
 opts = GrammarCop::ParseOptions.create
 GrammarCop::ParseOptions.set_short_length(opts, 7)
