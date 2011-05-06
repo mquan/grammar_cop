@@ -1,5 +1,7 @@
 require "#{File.dirname(__FILE__)}/../lib/grammar_cop"
 
+dict = GrammarCop::Dictionary.new.create("en")
+=begin
 puts dir = File.expand_path('../data', File.dirname(__FILE__))
 GrammarCop::Dictionary.set_dictionary_path(dir)
 
@@ -24,3 +26,4 @@ end
 GrammarCop::Sentence.destroy(sentence)
 GrammarCop::ParseOptions.destroy(opts)
 GrammarCop::Dictionary.destroy(dict)
+=end
