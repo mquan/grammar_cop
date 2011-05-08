@@ -1,7 +1,5 @@
 require "#{File.dirname(__FILE__)}/../lib/grammar_cop"
 
-dict = GrammarCop::Dictionary.new.create("en")
-=begin
 puts dir = File.expand_path('../data', File.dirname(__FILE__))
 GrammarCop::Dictionary.set_dictionary_path(dir)
 
@@ -20,10 +18,10 @@ if num > 0
   puts "sublinkages=#{GrammarCop::Linkage.sublinkages_count(linkage)}"
   puts "num_words=#{GrammarCop::Linkage.num_words_count(linkage)}"
   puts "num_links=#{GrammarCop::Linkage.num_links_count(linkage)}"
-  GrammarCop::Linkage.destroy(linkage)
+  #GrammarCop::Linkage.destroy(linkage)
 end
+puts "linkages count=#{GrammarCop::Sentence.count_linkages(text, dict, opts)}"
 
 GrammarCop::Sentence.destroy(sentence)
-GrammarCop::ParseOptions.destroy(opts)
-GrammarCop::Dictionary.destroy(dict)
-=end
+#GrammarCop::ParseOptions.destroy(opts)
+#GrammarCop::Dictionary.destroy(dict)

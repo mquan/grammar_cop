@@ -2,13 +2,7 @@ require "grammar_cop/link_grammar"
 
 module GrammarCop
   class Dictionary
-    include LinkGrammar
-    def create(language)
-      create_dictionary(language)
-    end  
-=begin
     extend LinkGrammar
-    
     #call before create
     def self.set_dictionary_path(dir)
       dictionary_path_set(dir)
@@ -21,6 +15,5 @@ module GrammarCop
     def self.destroy(dict)
       delete_dictionary(dict)
     end
-=end
   end
 end

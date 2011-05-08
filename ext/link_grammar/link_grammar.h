@@ -60,40 +60,40 @@
 #include "ruby.h"
 
 //pointer wrappers containing Dictionary, Parse_Options, Sentence objects
-struct dictionary_ptr {
+typedef struct dictionary_ptr {
 	Dictionary dict;
-};
+} DictionaryPtr;
 
-struct parse_options_ptr {
+typedef struct parse_options_ptr {
 	Parse_Options opts;
-};
+} ParseOptionsPtr;
 
-struct sentence_ptr {
+typedef struct sentence_ptr {
 	Sentence sentence;
-};
+} SentencePtr;
 
-struct linkage_ptr {
+typedef struct linkage_ptr {
 	Linkage linkage;
-};
+} LinkagePtr;
 
-void dictionary_path_set(const VALUE self, volatile VALUE dict_path);
-struct dictionary_ptr *create_dictionary(const VALUE self, volatile VALUE lang);
-void delete_dictionary(const VALUE self, struct dictionary_ptr *ptr);
+VALUE dictionary_path_set(const VALUE self, volatile VALUE dict_path);
+VALUE create_dictionary(const VALUE self, volatile VALUE lang);
+VALUE delete_dictionary(const VALUE self, VALUE dict);
 
-struct parse_options_ptr *create_parse_options(const VALUE self);
-VALUE delete_parse_options(const VALUE self, struct parse_options_ptr *ptr);
-void linkage_limit_set(const VALUE self, struct parse_options_ptr *ptr, volatile VALUE limit);
-VALUE linkage_limit_get(const VALUE self, struct parse_options_ptr *ptr);
-void short_length_set(const VALUE self, struct parse_options_ptr *ptr, volatile VALUE length);
-VALUE short_length_get(const VALUE self, struct parse_options_ptr *ptr);
+VALUE create_parse_options(const VALUE self);
+VALUE delete_parse_options(const VALUE self, VALUE opts);
+VALUE linkage_limit_set(const VALUE self, VALUE opts, volatile VALUE limit);
+VALUE linkage_limit_get(const VALUE self, VALUE opts);
+VALUE short_length_set(const VALUE self, VALUE opts, volatile VALUE length);
+VALUE short_length_get(const VALUE self, VALUE opts);
 
-struct sentence_ptr *create_sentence(const VALUE self, volatile VALUE str, struct dictionary_ptr *dict_ptr);
-VALUE parse_sentence(const VALUE self, struct sentence_ptr *sentence, struct parse_options_ptr *opts_ptr);
-void delete_sentence(const VALUE self, struct sentence_ptr *sentence);
+VALUE create_sentence(const VALUE self, volatile VALUE str, VALUE dict);
+VALUE parse_sentence(const VALUE self, VALUE sentence, VALUE opts);
+VALUE delete_sentence(const VALUE self, VALUE sentence);
 
-struct linkage_ptr *create_linkage(const VALUE self, volatile VALUE k, struct sentence_ptr *sent_ptr, struct parse_options_ptr *opts_ptr);
-void delete_linkage(const VALUE self, struct linkage_ptr *link_ptr);
-VALUE print_linkage_diagram(const VALUE self, struct linkage_ptr *link_ptr);
-VALUE linkage_count_sublinkages(const VALUE self, struct linkage_ptr *link_ptr);
-VALUE linkage_count_num_words(const VALUE self, struct linkage_ptr *link_ptr);
-VALUE linkage_count_num_links(const VALUE self, struct linkage_ptr *link_ptr);
+VALUE create_linkage(const VALUE self, volatile VALUE k, VALUE sentence, VALUE opts);
+VALUE delete_linkage(const VALUE self, VALUE link);
+VALUE print_linkage_diagram(const VALUE self, VALUE link);
+VALUE linkage_count_sublinkages(const VALUE self, VALUE link);
+VALUE linkage_count_num_words(const VALUE self, VALUE link);
+VALUE linkage_count_num_links(const VALUE self, VALUE link);
