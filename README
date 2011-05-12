@@ -1,0 +1,22 @@
+grammar_cop is a standalone ruby extension for the link-grammar-4.7.4 C library. You don't have to install anything extra, so this is deployable on platforms like heroku, cloudfoundry. 
+Example:
+
+require 'grammar_cop'
+
+puts dir = File.expand_path('../data', File.dirname(__FILE__))
+GrammarCop::Dictionary.set_dictionary_path(dir)
+
+dict = GrammarCop::Dictionary.create("en")
+opts = GrammarCop::ParseOptions.create
+text = "Grammar is useless because there's nothing to say -- Gertrude Stein."
+sentence = GrammarCop::Sentence.create(text, dict)
+puts num = GrammarCop::Sentence.parse(sentence, opts)
+if num > 0
+  linkage = GrammarCop::Linkage.create(0, sentence, opts)
+  puts GrammarCop::Linkage.create_diagram(linkage)
+  puts "sublinkages=#{GrammarCop::Linkage.sublinkages_count(linkage)}"
+  puts "num_words=#{GrammarCop::Linkage.num_words_count(linkage)}"
+  puts "num_links=#{GrammarCop::Linkage.num_links_count(linkage)}"
+  #GrammarCop::Linkage.destroy(linkage)
+end
+GrammarCop::Sentence.destroy(sentence)
