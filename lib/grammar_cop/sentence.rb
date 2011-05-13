@@ -25,7 +25,8 @@ module GrammarCop
       end
       
       #however, sometimes the split results in all incomplete clause so check one more time in those cases
-      if count == 0
+      #but make sure it's not a really long sentence which will cause link-grammar to choke with combinatorial explosion
+      if text.size < 250 and count == 0
         s = create_sentence(text, dictionary)
         count = parse_sentence(s, options)
         delete_sentence(s)

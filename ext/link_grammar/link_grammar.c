@@ -17,6 +17,16 @@ void Init_link_grammar() {
 	rb_define_module_function(lg, "linkage_limit_get", linkage_limit_get, 1);
 	rb_define_module_function(lg, "short_length_set", short_length_set, 2);
 	rb_define_module_function(lg, "short_length_get", short_length_get, 1);
+	rb_define_module_function(lg, "disjunct_cost_set", disjunct_cost_set, 2);
+	rb_define_module_function(lg, "disjunct_cost_get", disjunct_cost_get, 1);
+	rb_define_module_function(lg, "min_null_count_set", min_null_count_set, 2);
+	rb_define_module_function(lg, "min_null_count_get", min_null_count_get, 1);
+	rb_define_module_function(lg, "max_null_count_set", max_null_count_set, 2);
+	rb_define_module_function(lg, "max_null_count_get", max_null_count_get, 1);	
+	rb_define_module_function(lg, "options_null_block_set", options_null_block_set, 2);
+	rb_define_module_function(lg, "options_null_block_get", options_null_block_get, 1);
+	rb_define_module_function(lg, "islands_ok_set", islands_ok_set, 2);
+	rb_define_module_function(lg, "islands_ok_get", islands_ok_get, 1);
 	rb_define_module_function(lg, "create_sentence", create_sentence, 2);
 	rb_define_module_function(lg, "parse_sentence", parse_sentence, 2);
 	rb_define_module_function(lg, "delete_sentence", delete_sentence, 1);
@@ -134,6 +144,71 @@ VALUE short_length_get(const VALUE self, VALUE opts) {
 	ParseOptionsPtr *ptr = retrieve_parse_options(opts);
 	int l = parse_options_get_short_length(ptr->opts);
 	return INT2FIX(l);
+}
+
+VALUE disjunct_cost_set(const VALUE self, VALUE opts, volatile VALUE cost) {
+	ParseOptionsPtr *ptr = retrieve_parse_options(opts);
+	int c = NUM2INT(cost);
+	parse_options_set_disjunct_cost(ptr->opts, c);
+	return Qnil;
+}
+
+VALUE disjunct_cost_get(const VALUE self, VALUE opts) {
+	ParseOptionsPtr *ptr = retrieve_parse_options(opts);
+	int c = parse_options_get_disjunct_cost(ptr->opts);
+	return INT2FIX(c);
+}
+
+VALUE min_null_count_set(const VALUE self, VALUE opts, volatile VALUE count) {
+	ParseOptionsPtr *ptr = retrieve_parse_options(opts);
+	int c = NUM2INT(count);
+	parse_options_set_min_null_count(ptr->opts, c);
+	return Qnil;
+}
+
+VALUE min_null_count_get(const VALUE self, VALUE opts) {
+	ParseOptionsPtr *ptr = retrieve_parse_options(opts);
+	int c = parse_options_get_min_null_count(ptr->opts);
+	return INT2FIX(c);
+}
+
+VALUE max_null_count_set(const VALUE self, VALUE opts, volatile VALUE count) {
+	ParseOptionsPtr *ptr = retrieve_parse_options(opts);
+	int c = NUM2INT(count);
+	parse_options_set_max_null_count(ptr->opts, c);
+	return Qnil;
+}
+
+VALUE max_null_count_get(const VALUE self, VALUE opts) {
+	ParseOptionsPtr *ptr = retrieve_parse_options(opts);
+	int c = parse_options_get_max_null_count(ptr->opts);
+	return INT2FIX(c);
+}
+
+VALUE options_null_block_set(const VALUE self, VALUE opts, volatile VALUE n_block) {
+	ParseOptionsPtr *ptr = retrieve_parse_options(opts);
+	int b = NUM2INT(n_block);
+	parse_options_set_null_block(ptr->opts, b);
+	return Qnil;
+}
+
+VALUE options_null_block_get(const VALUE self, VALUE opts) {
+	ParseOptionsPtr *ptr = retrieve_parse_options(opts);
+	int n_block = parse_options_get_null_block(ptr->opts);
+	return INT2FIX(n_block);
+}
+
+VALUE islands_ok_set(const VALUE self, VALUE opts, volatile VALUE islands_ok) {
+	ParseOptionsPtr *ptr = retrieve_parse_options(opts);
+	int i = NUM2INT(islands_ok);
+	parse_options_set_islands_ok(ptr->opts, i);
+	return Qnil;
+}
+
+VALUE islands_ok_get(const VALUE self, VALUE opts) {
+	ParseOptionsPtr *ptr = retrieve_parse_options(opts);
+	int i = parse_options_get_islands_ok(ptr->opts);
+	return INT2FIX(i);
 }
 
 VALUE create_sentence(const VALUE self, volatile VALUE str, VALUE dict) {

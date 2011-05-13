@@ -86,6 +86,16 @@ VALUE linkage_limit_set(const VALUE self, VALUE opts, volatile VALUE limit);
 VALUE linkage_limit_get(const VALUE self, VALUE opts);
 VALUE short_length_set(const VALUE self, VALUE opts, volatile VALUE length);
 VALUE short_length_get(const VALUE self, VALUE opts);
+VALUE disjunct_cost_set(const VALUE self, VALUE opts, volatile VALUE cost);
+VALUE disjunct_cost_get(const VALUE self, VALUE opts);
+VALUE min_null_count_set(const VALUE self, VALUE opts, volatile VALUE count);
+VALUE min_null_count_get(const VALUE self, VALUE opts);
+VALUE max_null_count_set(const VALUE self, VALUE opts, volatile VALUE count);
+VALUE max_null_count_get(const VALUE self, VALUE opts);
+VALUE options_null_block_set(const VALUE self, VALUE opts, volatile VALUE n_block);
+VALUE options_null_block_get(const VALUE self, VALUE opts);
+VALUE islands_ok_set(const VALUE self, VALUE opts, volatile VALUE islands_ok);
+VALUE islands_ok_get(const VALUE self, VALUE opts);
 
 VALUE create_sentence(const VALUE self, volatile VALUE str, VALUE dict);
 VALUE parse_sentence(const VALUE self, VALUE sentence, VALUE opts);
